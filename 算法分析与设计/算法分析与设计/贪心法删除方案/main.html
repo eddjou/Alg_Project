@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>F:\Files\程序\Algorithm\DeleteNumbers\main.cpp</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta name="generator" content="Code::Blocks Exporter plugin" />
+<style type="text/css">
+<!--
+body { color: #000000; background-color: #FFFFFF; }
+.style11 { color: #000000; background-color: #FFFFFF; }
+.style64 { color: #C8C8C8; }
+.style72 { color: #C8C8C8; }
+.style75 { color: #C8C8C8; }
+.style1 { color: #A0A0A0; }
+.style23 { color: #A0A0A0; }
+.style65 { color: #A0A0A0; }
+.style87 { color: #A0A0A0; }
+.style2 { color: #BEBEE6; }
+.style66 { color: #BEBEE6; }
+.style3 { color: #8080FF; }
+.style24 { color: #8080FF; }
+.style67 { color: #8080FF; }
+.style88 { color: #8080FF; }
+.style15 { color: #8080FF; }
+.style79 { color: #8080FF; }
+.style17 { color: #008080; }
+.style81 { color: #008080; }
+.style18 { color: #800000; }
+.style82 { color: #800000; }
+.style4 { color: #F000F0; }
+.style68 { color: #F0C8F0; }
+.style5 { color: #0000A0; }
+.style69 { color: #8787C8; }
+.style16 { color: #00A000; }
+.style80 { color: #9AC89A; }
+.style19 { color: #BE00BE; }
+.style83 { color: #BE89BE; }
+.style6 { color: #0000FF; }
+.style12 { color: #0000FF; }
+.style70 { color: #BEBEFF; }
+.style76 { color: #BEBEFF; }
+.style7 { color: #E0A000; }
+.style71 { color: #E0CE9F; }
+.style8 { color: #000000; }
+.style9 { color: #00A000; }
+.style73 { color: #84A084; }
+.style10 { color: #FF0000; }
+.style74 { color: #FFC8C8; }
+.style34 { color: #000000; background-color: #80FFFF; }
+.style35 { color: #FFFFFF; background-color: #FF0000; }
+.style50 { color: #404080; font-style: italic; }
+.style114 { color: #8585AC; font-style: italic; }
+--></style></head>
+<body>
+<pre>
+<code><span style="font: 12pt YaHei Consolas Hybrid;"><span class="body"> 1 </span><span class="style1">/*n表示输入整数的位数k表示欲删除的位数*/</span><span class="style9">#include&lt;iostream&gt;#include&lt;math.h&gt;#include&lt;cstdlib&gt;</span><span class="style5">using namespace </span><span class="style16">std</span><span class="style10">;</span><span class="style5">int </span><span class="style11">main</span><span class="style10">(){        </span><span class="style5">long </span><span class="style11">in_num</span><span class="style10">;        </span><span class="style5">int </span><span class="style11">n</span><span class="style10">,</span><span class="style11">k</span><span class="style10">;        </span><span class="style5">int </span><span class="style11">i</span><span class="style10">,</span><span class="style11">tmp</span><span class="style10">;        </span><span class="style5">char </span><span class="style11">choice</span><span class="style10">;        </span><span class="style5">bool </span><span class="style11">flag</span><span class="style10">=</span><span class="style5">true</span><span class="style10">;        </span><span class="style5">while</span><span class="style10">(</span><span class="style11">flag</span><span class="style10">){                </span><span class="style16">cout</span><span class="style10">&lt;&lt;</span><span class="style6">"*** Please input an integer:"</span><span class="style10">;                </span><span class="style16">cin</span><span class="style10">&gt;&gt;</span><span class="style11">in_num</span><span class="style10">;                </span><span class="style16">cout</span><span class="style10">&lt;&lt;</span><span class="style6">"*** Please input the number of digits to be deleted:"</span><span class="style10">;                </span><span class="style16">cin</span><span class="style10">&gt;&gt;</span><span class="style11">k</span><span class="style10">;                </span><span class="style11">n</span><span class="style10">=</span><span class="style11">log10</span><span class="style10">(</span><span class="style11">in_num</span><span class="style10">)+</span><span class="style4">1</span><span class="style10">;                </span><span class="style5">if</span><span class="style10">(</span><span class="style11">k</span><span class="style10">&gt;=</span><span class="style11">n</span><span class="style10">) {                        </span><span class="style16">cout</span><span class="style10">&lt;&lt;</span><span class="style6">"&lt;&lt;&lt; k cannot be greater than n, Please retry &gt;&gt;&gt;"</span><span class="style10">&lt;&lt;</span><span class="style16">endl</span><span class="style10">;                        </span><span class="style5">continue</span><span class="style10">;                }                </span><span class="style2">//将整数各位取至数组中                </span><span class="style0">int a[n];                tmp=in_num;                for(i=n-1;i&gt;=0;i--){                        a[i]=tmp%10;                        tmp/=10;                }                //控制删去的个数                for(i=1;i&lt;=k;i++){                        for(int j=0;j&lt;n-i;j++){                                if(a[j]&lt;a[j+1]) continue;                                else{ a[j]=-1; break;}                        }                        //删掉的数的位置被赋值-1，现在把-1以后的数都往前挪                        for(int j=0;j&lt;n-i;j++){                                if(a[j]==-1){                                        a[j]=a[j+1];                                        a[j+1]=-1;                                }                        }                }                cout&lt;&lt;"*** After deletion: ";                for(i=0;i&lt;n-k;i++)                        cout&lt;&lt;a[i];                cout &lt;&lt;endl;                cout&lt;&lt;"*** Start over? (Y/N)";                cin&gt;&gt;choice;                cout&lt;&lt;endl;                if(choice=='Y'||choice=='y');                if(choice=='N'||choice =='n') flag=false;        }        system("pause");        return 0;}</span></span>
+</code></pre>
+</body>
+</html>
